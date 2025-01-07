@@ -7,7 +7,6 @@ class Usuario():
     __caracter_especiais = UsuarioEnum.CARACTERES_ESPECIAIS.value
 
     def __init__(self, nome: str, email: str) -> None:
-
         if self.__checa_se_nome_valido(nome):
             self.__nome = " ".join(nome.split())
 

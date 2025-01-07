@@ -21,7 +21,7 @@
 
 
 ##### Tech/Conf/Arch
-- [X] Add frame de mudation
-- [X] Verificar coverage
-- [ ] Explorar opções avançadas de mutation 
-- [ ] Explorar opções avançadas de coverage
+- [X] Add frame de mudation -> Adicionado mutmut 2.5.1
+- [X] Verificar coverage -> Colocado coverage no pre-commit 
+- [X] Explorar opções avançadas de mutation 
+- [X] Explorar opções avançadas de coverage
