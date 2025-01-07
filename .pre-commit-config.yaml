@@ -13,13 +13,13 @@ repos:
       - id: pylint
         name: Run pylint
         language: system
-        args: ["--rcfile=python-playground/.pylintrc"]
+        args: ["--rcfile=.pylintrc"]
         types: [python]
 
   - repo: local
     hooks:
       - id: pytest
         name: Run pytest with coverage
-        entry: bash -c "PYTHONPATH=python-playground/src  pytest --cov=python_playground/src --cov-report=term-missing --cov-fail-under=80 --rootdir=python-playground"
+        entry: bash -c "pytest --cov=src/ --cov-report=term-missing --cov-fail-under=80"
         language: system
         types: [python]

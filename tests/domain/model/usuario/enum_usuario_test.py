@@ -1,12 +1,12 @@
-from domain.model.usuario.enumUsuario import UsuarioEnum
 import pytest
+from domain.model.usuario.enum_usuario import UsuarioEnum
 
 
 class TestUsuarioEnum:
 
-    @pytest.mark.parametrize("enum", ["Nome Invalido!"]) 
+    @pytest.mark.parametrize("enum", ["Nome Invalido!"])
     def test_enum_nome_invalido(self, enum: str):
-        assert UsuarioEnum.NOME_INVALIDO.value == enum 
+        assert UsuarioEnum.NOME_INVALIDO.value == enum
 
     @pytest.mark.parametrize("enaum", ["Nome Invalido! Não pode conter números!"])
     def test_enum_nome_nao_pode_conter_numeros(self, enaum: str):
@@ -40,7 +40,6 @@ class TestUsuarioEnum:
     def test_enum_email_deve_conter_ponto_a_pos_arroba(self, enum: str):
         assert UsuarioEnum.EMAIL_DEVE_CONTER_PONTOS_APOS_ARROBA.value == enum
 
-
     @pytest.mark.parametrize("enum", ["Email Invalido! Email deve conter mais de 2 caracteres antes do @!"])
     def test_enum_email_deve_ter_mais_de_2_caracteres_antes_arroba(self, enum: str):
         assert UsuarioEnum.EMAIL_DEVE_TER_PELO_MENOS_2_CARACTERES_ANTES_ARROBA.value == enum
@@ -48,4 +47,3 @@ class TestUsuarioEnum:
     @pytest.mark.parametrize("enum", ["Email Invalido! Email deve conter mais de 2 caracteres depois do @!"])
     def test_enum_email_deve_ter_mais_de_2_caracteres_depois_arroba(self, enum: str):
         assert UsuarioEnum.EMAIL_DEVE_TER_PELO_MENOS_2_CARACTERES_DEPOIS_ARROBA.value == enum
-

@@ -1,7 +1,7 @@
-from domain.model.usuario.enumUsuario import UsuarioEnum
-from domain.model.usuario.usuario import Usuario
-from domain.model.exception.customException import *
 import pytest
+from domain.model.usuario.enum_usuario import UsuarioEnum
+from domain.model.usuario.usuario import Usuario
+from domain.model.exception.custom_exception import EmailInvalidoError, NomeInvalidoError
 
 
 class TestUsuario():
@@ -9,8 +9,7 @@ class TestUsuario():
     def criar_usuario(self, nome: str = "Teste", email: str = "email@email.com"):
         return Usuario(nome, email)
 
-    @pytest.mark.parametrize("nome", ["Micci", "Luiz", "udy"
-                                      "João", " Luis", " Marcia ", "vica ", "luiz    felipe", "Luiz Felipe"])
+    @pytest.mark.parametrize("nome", ["Micci", "Luiz", "udy", "João", " Luis", " Marcia ", "vica ", "luiz    felipe", "Luiz Felipe"])
     def test_criando_usuario_dados_minimos(self, nome):
         usuario = self.criar_usuario(nome)
         assert usuario.nome == " ".join(nome.split())
@@ -65,13 +64,14 @@ class TestUsuario():
     ###################### VALIDAÇÕES DO ATRIBUTO EMAIL ####################
     """
 
-    @pytest.mark.parametrize("email", [" email@email.com", "email@mail.com.br", "email@email.cm ", "email@email.com",  "ema@mail.com", "ema@a.c"])
+    @pytest.mark.parametrize("email", [" email@email.com", "email@mail.com.br", "email@email.cm ", "email@email.com",  "ema@mail.com",
+                                       "ema@a.c"])
     def test_email_valido(self, email: str):
         usuario = self.criar_usuario(email=email)
         assert usuario.email == "".join(email.split())
 
-
     # validações do atributo email\
+
     @pytest.mark.parametrize("email", ["", None])
     def test_email_nao_pode_ser_vazio(self, email: str):
         with pytest.raises(EmailInvalidoError) as target:
@@ -147,14 +147,13 @@ class TestUsuario():
         usuario = self.criar_usuario(email=email)
         assert usuario.email == email
 
-
     """
     Dado que existem caracteres especiais
     quando eles forem checados pelo sistema
     então eles devem ser dessa lista:  "@#$%^&*()-+?_=,<>!/."
 
     """
-    @pytest.mark.parametrize("caracteres_especiais", [ "@#$%^&*()-+?_=,<>!/."])
+    @pytest.mark.parametrize("caracteres_especiais", ["@#$%^&*()-+?_=,<>!/."])
     def test_verifica_lista_de_caracteres_especiais(self, caracteres_especiais: str):
         usuario = self.criar_usuario()
         assert usuario.caracteres_especiais == caracteres_especiais

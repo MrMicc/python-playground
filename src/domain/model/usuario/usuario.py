@@ -1,5 +1,6 @@
-from domain.model.exception.customException import *
-from domain.model.usuario.enumUsuario import UsuarioEnum
+from domain.model.exception.custom_exception import EmailInvalidoError, NomeInvalidoError
+from domain.model.usuario.enum_usuario import UsuarioEnum
+
 
 class Usuario():
 
@@ -24,7 +25,7 @@ class Usuario():
 
         if isinstance(nome, str) and any(char.isdigit() for char in nome):
             lista_erros.append(
-               UsuarioEnum.NOME_NAO_PODE_TER_NUMEROS.value)
+                UsuarioEnum.NOME_NAO_PODE_TER_NUMEROS.value)
         # nome cannot have special characters
         if any(char in self.__caracter_especiais for char in nome):
             lista_erros.append(
