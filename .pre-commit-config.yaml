@@ -1,0 +1,25 @@
+repos:
+  - repo: git@github.com:pre-commit/mirrors-mypy
+    rev: v1.14.1
+    hooks:
+      - id: mypy
+        name: Run Mypy
+        language: system
+        types: [python]
+
+  - repo: git@github.com:pylint-dev/pylint.git
+    rev: v3.3.3
+    hooks:
+      - id: pylint
+        name: Run pylint
+        language: system
+        args: ["--rcfile=python-playground/.pylintrc"]
+        types: [python]
+
+  - repo: local
+    hooks:
+      - id: pytest
+        name: Run pytest with coverage
+        entry: bash -c "PYTHONPATH=python-playground/src  pytest --cov=python_playground/src --cov-report=term-missing --cov-fail-under=80 --rootdir=python-playground"
+        language: system
+        types: [python]
