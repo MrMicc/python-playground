@@ -7,13 +7,12 @@ class Usuario():
     __caracter_especiais = UsuarioEnum.CARACTERES_ESPECIAIS.value
 
     def __init__(self, nome: str, email: str) -> None:
-        if self.__checa_se_nome_valido(nome):
-            self.__nome = " ".join(nome.split())
+        self.__nome = self.__nome_valido(nome)
 
-        if self.__checa_se_email_valido(email):
-            self.__email = "".join(email.split())
+        self.__email = self.__email_valido(email)
+        # self.__email = "".join(email.split())
 
-    def __checa_se_nome_valido(self, nome: str) -> bool:
+    def __nome_valido(self, nome: str) -> str:
         lista_erros = []
         if not nome:
             lista_erros.append(UsuarioEnum.NOME_INVALIDO.value)
@@ -36,9 +35,11 @@ class Usuario():
 
         if len(lista_erros) > 0:
             raise NomeInvalidoError(lista_erros)
-        return True
 
-    def __checa_se_email_valido(self, email: str) -> bool:
+        nome = " ".join(nome.split())
+        return nome
+
+    def __email_valido(self, email: str) -> str:
         lista_erros = []
         character_especiais = self.__caracter_especiais
         if not email:
@@ -71,7 +72,9 @@ class Usuario():
 
         if len(lista_erros) > 0:
             raise EmailInvalidoError(lista_erros)
-        return True
+
+        email = "".join(email.split())
+        return email
 
     @property
     def caracteres_especiais(self) -> str:
