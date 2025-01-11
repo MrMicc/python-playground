@@ -10,6 +10,7 @@
 - - [X] pode conter espaços no meio
 - - [X] nao pode conter simbolos
 - - [X] tem quer ter no minimo 3 char
+- - [ ] nome não pode ser maior de 245 char
 - [X] add attr email
 - - [X] O email precisa estar no formato valido
 - - [X] O email nao pode estar vazio

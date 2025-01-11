@@ -7,7 +7,7 @@ class UsuarioEnum(Enum):
     NOME_NAO_PODE_TER_CARACTERES_ESPECIAIS = "Nome Invalido! Nome pode conter caracteres especiais!"
     NOME_NAO_PODE_SER_MENOR_QUE_3_CHAR = "Nome Invalido! Nome deve ter pelo menos 3 caracteres"
     NOME_PRECISA_SER_STRING = "Nome invalido! Nome precisa ser do tipo String"
-
+    NOME_TAMANHO_INVALIDO = "Nome Invalido! Nome deve ter no maximo 245 caracteres"
     EMAIL_NAO_PODE_COMECAR_OU_TERMINAR_COM_CARACTERES_ESPECIAIS = ("Email Invalido! Email nao pode comecar ou terminar com "
                                                                    "caracteres especiais!")
     EMAIL_DEVE_CONTER_ARROBA = "Email Invalido! Email deve conter @"

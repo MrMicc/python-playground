@@ -18,7 +18,6 @@ class TestUsuario():
     def test_nome_nao_pode_ter_vazio(self, nome):
         with pytest.raises(NomeInvalidoError) as target:
             self.criar_usuario(nome)
-        print(str(target.value))
         assert UsuarioEnum.NOME_INVALIDO.value in target.value.messages
 
     @pytest.mark.parametrize("nome", [123, 123.0])
@@ -39,13 +38,26 @@ class TestUsuario():
             self.criar_usuario(nome)
         assert UsuarioEnum.NOME_NAO_PODE_TER_CARACTERES_ESPECIAIS.value in target.value.messages
 
-    @pytest.mark.parametrize("nome", ["An", "a", "zu"])
+    @pytest.mark.parametrize("nome", ["An", "a", "zu", "    a"])
     def test_nome_nao_pode_conter_menos_de_3_caracteres(self, nome):
         with pytest.raises(NomeInvalidoError) as target:
             self.criar_usuario(nome)
         assert UsuarioEnum.NOME_NAO_PODE_SER_MENOR_QUE_3_CHAR.value in target.value.messages
 
-    @pytest.mark.parametrize("nome", ["1@"])
+    @pytest.mark.parametrize("nome",
+                             [(
+                                 "Aadasdadasdasdasdasdsasdasdsadsasdadadadadsadadsasdasdasdadadada"
+                                 "dasdsadasdadadasdadasdasdasdadadadsadadadadadadasdasdasdasdasdasdas"
+                                 "dasdasdasdasdasdasdasdasdasadadasdasdasdasdasdasdasdasdasdasdasdasd"
+                                 "aisdasdjahdjahsdhsjdhajaskhdshaahudsahduahsaaAA"),
+
+                              ])
+    def test_nome_nao_poder_conter_mais_de_245_char(self, nome):
+        with pytest.raises(NomeInvalidoError) as target:
+            self.criar_usuario(nome)
+        assert UsuarioEnum.NOME_TAMANHO_INVALIDO.value in target.value.messages
+
+    @pytest.mark.parametrize("nome", [" 1@   ", "3@"])
     def test_nome_invalido_tamnanho_numero_simbolo(self, nome):
         lista_erros_esperados = []
         lista_erros_esperados.append(
@@ -89,7 +101,6 @@ class TestUsuario():
     def test_email_nao_pode_comecar_ou_terminar_com_caracteres_especiais(self, email: str):
         with pytest.raises(EmailInvalidoError) as target:
             self.criar_usuario(email=email)
-        print(target.value.messages)
         assert UsuarioEnum.EMAIL_NAO_PODE_COMECAR_OU_TERMINAR_COM_CARACTERES_ESPECIAIS.value in target.value.messages
 
     """

@@ -14,29 +14,31 @@ class Usuario():
 
     def __nome_valido(self, nome: str) -> str:
         lista_erros = []
+
         if not nome:
             lista_erros.append(UsuarioEnum.NOME_INVALIDO.value)
-        # verify if nome is a string
         if not isinstance(nome, str):
             lista_erros.append(UsuarioEnum.NOME_PRECISA_SER_STRING.value)
             raise NomeInvalidoError(lista_erros)
+        nome = nome.strip()
 
         if isinstance(nome, str) and any(char.isdigit() for char in nome):
             lista_erros.append(
                 UsuarioEnum.NOME_NAO_PODE_TER_NUMEROS.value)
-        # nome cannot have special characters
         if any(char in self.__caracter_especiais for char in nome):
             lista_erros.append(
                 UsuarioEnum.NOME_NAO_PODE_TER_CARACTERES_ESPECIAIS.value)
-        # nome needs to be at least 3 characters long
         if len(nome) < 3:
             lista_erros.append(
                 UsuarioEnum.NOME_NAO_PODE_SER_MENOR_QUE_3_CHAR.value)
+        if len(nome) >= 245:
+            lista_erros.append(
+                UsuarioEnum.NOME_TAMANHO_INVALIDO.value)
 
         if len(lista_erros) > 0:
             raise NomeInvalidoError(lista_erros)
-
         nome = " ".join(nome.split())
+
         return nome
 
     def __email_valido(self, email: str) -> str:

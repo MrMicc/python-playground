@@ -24,6 +24,10 @@ class TestUsuarioEnum:
     def test_enum_nome_precisa_ser_string(self, enum: str):
         assert UsuarioEnum.NOME_PRECISA_SER_STRING.value == enum
 
+    @pytest.mark.parametrize("enum", ["Nome Invalido! Nome deve ter no maximo 245 caracteres"])
+    def test_enum_nome_tamanho_invalido(self, enum: str):
+        assert UsuarioEnum.NOME_TAMANHO_INVALIDO.value == enum
+
     @pytest.mark.parametrize("enum", ["Email Invalido! Email nao pode comecar ou terminar com caracteres especiais!"])
     def test_enum_email_nao_pode_comecar_ou_terminar_com_caracteres_especiais(self, enum: str):
         assert UsuarioEnum.EMAIL_NAO_PODE_COMECAR_OU_TERMINAR_COM_CARACTERES_ESPECIAIS.value == enum
