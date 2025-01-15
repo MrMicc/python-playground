@@ -10,7 +10,7 @@
 - - [X] pode conter espaços no meio
 - - [X] nao pode conter simbolos
 - - [X] tem quer ter no minimo 3 char
-- - [ ] nome não pode ser maior de 245 char
+- - [X] nome não pode ser maior de 245 char
 - [X] add attr email
 - - [X] O email precisa estar no formato valido
 - - [X] O email nao pode estar vazio
@@ -19,6 +19,7 @@
 - - [X] O email nao pode comecar ou terminar com .
 - - [X] O email tem quer ter no minimo 3 char antes do @
 - - [X] O email tem quer ter no minimo 3 char depois do @
+- - [ ] O email não pode ser maior que 100 char
 
 
 ##### Tech/Conf/Arch
