@@ -1,5 +1,5 @@
 import pytest
-from fastapi import Request, Response, status
+from fastapi import Request, status
 from domain.apis.usuarios.usuarios_post import UsuariosAPI
 
 
@@ -24,8 +24,7 @@ class TestUsuariosPost():
     async def test_usuarios_post(self, nome, email):
         request = self.__cria_request_usuario(nome, email)
 
-        response = Response()
-        result = await UsuariosAPI().post(request, response)
+        result = await UsuariosAPI().post(request)
 
         expected = status.HTTP_200_OK
         expected_result = b'{"message": "Usuario criado com sucesso"}'
@@ -41,9 +40,7 @@ class TestUsuariosPost():
     @pytest.mark.parametrize("nome, email", [("Luiz Felipe3", "email@email.com")])
     async def test_usuarios_invalidos_post(self, nome, email):
         request = self.__cria_request_usuario(nome, email)
-
-        response = Response()
-        result = await UsuariosAPI().post(request, response)
+        result = await UsuariosAPI().post(request)
 
         expected = status.HTTP_400_BAD_REQUEST
         assert result.status_code == expected
@@ -59,9 +56,7 @@ class TestUsuariosPost():
     async def test_usuarios_invalidos_post_mensagem_erro(self, nome, email):
         request = self.__cria_request_usuario(nome, email)
 
-        response = Response()
-        await UsuariosAPI().post(request, response)
+        result = await UsuariosAPI().post(request)
 
-        print(response.body)
         expected = b'{"error": "[\'Nome Invalido! N\xc3\xa3o pode conter n\xc3\xbameros!\']"}'
-        assert response.body == expected
+        assert result.body == expected

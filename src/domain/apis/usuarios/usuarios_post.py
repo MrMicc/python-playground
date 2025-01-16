@@ -7,7 +7,8 @@ from domain.model.exception.custom_exception import EmailInvalidoError, NomeInva
 # pylint: disable=too-few-public-methods
 class UsuariosAPI():
 
-    async def post(self, request: Request, response: Response) -> Response:
+    async def post(self, request: Request) -> Response:
+        response = Response()
 
         try:
             dados_request = await request.json()
