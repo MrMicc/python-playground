@@ -1,0 +1,5 @@
+{
+    "venvPath": "./",
+    "venv": "playground-env",
+    "pythonVersion": "3.12.5"
+}
