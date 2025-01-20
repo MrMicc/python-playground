@@ -14,7 +14,7 @@ class UsuarioApi():
         try:
             usuario = Usuario(nome=usuario_model.nome,
                               email=usuario_model.email)
-            return JSONResponse(content={"message": "SUCCESS", "usuario": {"nome": usuario.nome, "email": usuario.email}}, status_code=201)
+            return JSONResponse(content={"message": usuario.to_dict()}, status_code=201)
 
         except (EmailInvalidoError, NomeInvalidoError) as error:
             return JSONResponse(content={"message": error.messages}, status_code=400)

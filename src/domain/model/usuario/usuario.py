@@ -1,3 +1,4 @@
+import json
 from domain.model.exception.custom_exception import EmailInvalidoError, NomeInvalidoError
 from domain.model.usuario.enum_usuario import UsuarioEnum
 
@@ -92,3 +93,12 @@ class Usuario():
     def email(self) -> str:
         """Email property."""
         return self.__email
+
+    def to_dict(self) -> dict:
+        return {
+            "nome":  self.__nome,
+            "email": self.__email
+        }
+
+    def __str__(self) -> str:
+        return json.dumps(self.to_dict(), indent=4)

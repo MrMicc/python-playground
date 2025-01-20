@@ -24,7 +24,7 @@
 - - [X] criar rota -> domain/apis/rotas.usuarios
 - - [X] criar Model do fast api -> apis/usuarios/usuario_model
 - - [X] criar método post
-- - - [ ] Fazer com que o objeto usuario já retorno um objeto json 
+- - - [X] Fazer com que o objeto usuario já retorno um objeto json 
 - - [ ] fazer método post ser chamado na rota 
 
 

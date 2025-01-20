@@ -1,9 +1,11 @@
+import json
 import pytest
 from domain.model.usuario.enum_usuario import UsuarioEnum
 from domain.model.usuario.usuario import Usuario
 from domain.model.exception.custom_exception import EmailInvalidoError, NomeInvalidoError
 
 
+# pylint: disable=too-many-public-methods
 class TestUsuario():
 
     def criar_usuario(self, nome: str = "Teste", email: str = "email@email.com"):
@@ -168,3 +170,15 @@ class TestUsuario():
     def test_verifica_lista_de_caracteres_especiais(self, caracteres_especiais: str):
         usuario = self.criar_usuario()
         assert usuario.caracteres_especiais == caracteres_especiais
+
+    def test_to_dict(self):
+        usuario = Usuario("Nome", "email@email.com")
+
+        assert usuario.to_dict() == {"nome": "Nome",
+                                     "email": "email@email.com"}
+
+    def test_str_is_json(self):
+        usuario = Usuario("Nome", "email@email.com")
+
+        assert str(usuario) == json.dumps(
+            {"nome": "Nome", "email": "email@email.com"}, indent=4, ensure_ascii=False)

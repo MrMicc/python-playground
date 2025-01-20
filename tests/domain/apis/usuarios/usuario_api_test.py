@@ -23,6 +23,11 @@ class TestUsuarioApi():
 
         assert result.status_code == 201
 
+        response_content = self.__get_response_content(result.body)
+
+        response_message = response_content.get("message")
+        assert response_message == {"nome": "Luiz", "email": "email@email.com"}
+
     @pytest.mark.asyncio
     @pytest.mark.parametrize(
         "nome, email, exception",
@@ -39,13 +44,18 @@ class TestUsuarioApi():
 
         assert result.status_code == 400
 
-        response_content = {}
-
-        if isinstance(result.body, memoryview):
-            response_content = json.loads(
-                result.body.tobytes().decode("utf-8"))
-        elif isinstance(result.body, bytes):
-            response_content = json.loads(result.body.decode("utf-8"))
+        response_content = self.__get_response_content(result.body)
 
         response_message = response_content.get("message", [])
         assert exception.value in response_message
+
+    def __get_response_content(self, body):
+        response_content = {}
+
+        if isinstance(body, memoryview):
+            response_content = json.loads(
+                body.tobytes().decode("utf-8"))
+        elif isinstance(body, bytes):
+            response_content = json.loads(body.decode("utf-8"))
+
+        return response_content
