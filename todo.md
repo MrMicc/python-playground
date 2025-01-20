@@ -20,6 +20,12 @@
 - - [X] O email tem quer ter no minimo 3 char antes do @
 - - [X] O email tem quer ter no minimo 3 char depois do @
 - - [ ] O email não pode ser maior que 100 char
+- [ ] Criar api post de usuario
+- - [X] criar rota -> domain/apis/rotas.usuarios
+- - [X] criar Model do fast api -> apis/usuarios/usuario_model
+- - [X] criar método post
+- - - [ ] Fazer com que o objeto usuario já retorno um objeto json 
+- - [ ] fazer método post ser chamado na rota 
 
 
 ##### Tech/Conf/Arch
