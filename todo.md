@@ -25,7 +25,7 @@
 - - [X] criar Model do fast api -> apis/usuarios/usuario_model
 - - [X] criar método post
 - - - [X] Fazer com que o objeto usuario já retorno um objeto json 
-- - [ ] fazer método post ser chamado na rota 
+- - [X] fazer método post ser chamado na rota 
 
 
 ##### Tech/Conf/Arch
