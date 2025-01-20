@@ -9,4 +9,4 @@ class TestRotas:
     def test_rotas(self):
         result = usuarios_router
         expected = APIRouter(prefix="/usuarios", tags=["usuarios"])
-        assert result == expected
+        assert result.prefix == expected.prefix and result.tags == expected.tags
